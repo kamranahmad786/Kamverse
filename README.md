@@ -1,4 +1,4 @@
-# ⚡ Kamran Ahmad — AI-Powered MERN Portfolio
+# ⚡ Kamverse — AI Powered Portfolio Website with RAG Chatbot
 
 An interactive **MERN Stack Developer Portfolio** with an integrated **RAG-based AI Chatbot**, dynamic project & certificate management, and visually rich Gen-Z design.
 
@@ -66,3 +66,106 @@ This portfolio showcases my projects, skills, and achievements while using cutti
 
 ## 🧩 Folder Structure
 
+```
+Kamverse/
+├── .gitignore
+├── README.md
+├── client/
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── README.md
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── pnpm-lock.yaml
+│   ├── public/
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── src/
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── assets/
+│   │   │   ├── profile.jpg
+│   │   │   └── react.svg
+│   │   ├── components/
+│   │   │   ├── About.jsx
+│   │   │   ├── Certificates.jsx
+│   │   │   ├── Chatbot.jsx
+│   │   │   ├── ContactForm.jsx
+│   │   │   ├── CursorFollower.jsx
+│   │   │   ├── Education.jsx
+│   │   │   ├── Experience.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Loader.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Projects.jsx
+│   │   │   ├── ScrollIndicator.jsx
+│   │   │   ├── Skills.jsx
+│   │   │   └── UI/
+│   │   │       ├── Button.jsx
+│   │   │       └── Card.jsx
+│   │   ├── context/
+│   │   │   ├── ThemeContext.jsx
+│   │   │   └── ThemeContextInstance.js
+│   │   ├── hooks/
+│   │   │   ├── useChat.js
+│   │   │   └── useTheme.js
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── main.jsx
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   └── NotFound.jsx
+│   │   └── services/
+│   │       ├── api.js
+│   │       ├── certificateApi.js
+│   │       └── chatApi.js
+│   ├── tailwind.config.js
+│   └── vite.config.js
+├── package-lock.json
+├── package.json
+└── server/
+    ├── app.js
+    ├── data/
+    │   └── resume.pdf
+    ├── package-lock.json
+    ├── package.json
+    ├── scripts/
+    │   └── ingest.js
+    ├── server.js
+    └── src/
+        ├── config/
+        │   ├── db.js
+        │   ├── openai.js
+        │   └── pinecone.js
+        ├── controllers/
+        │   ├── certificateController.js
+        │   ├── chatController.js
+        │   ├── contactController.js
+        │   ├── projectController.js
+        │   └── skillController.js
+        ├── models/
+        │   ├── Contact.js
+        │   ├── Message.js
+        │   ├── Project.js
+        │   ├── Skill.js
+        │   └── certificateModel.js
+        ├── routes/
+        │   ├── certificateRoutes.js
+        │   ├── chatRoutes.js
+        │   ├── contactRoutes.js
+        │   ├── projectRoutes.js
+        │   └── skillRoutes.js
+        ├── services/
+        │   ├── certificateService.js
+        │   ├── chatService.js
+        │   ├── contactService.js
+        │   ├── embeddingService.js
+        │   └── projectService.js
+        └── utils/
+            ├── errorHandler.js
+            └── logger.js
+```
