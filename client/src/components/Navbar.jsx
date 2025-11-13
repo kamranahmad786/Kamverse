@@ -64,7 +64,7 @@ export default function Navbar() {
               <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-[3px] border-fuchsia-400 
                               shadow-[0_0_20px_#f0f,0_0_40px_#a0f] overflow-hidden">
                 <motion.img
-                  src="/src/assets/profile.jpg"
+                  src="/assets/profileImg.jpg"
                   alt="Kamran Ahmad"
                   className="w-full h-full object-cover rounded-full"
                   initial={{ rotate: -10, opacity: 0 }}
