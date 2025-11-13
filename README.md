@@ -21,7 +21,7 @@
 
 ## 🌐 Live Demo  
 🚀 *Frontend (Vercel):* [https://kamverse.vercel.app](https://kamverse.vercel.app/)  
-⚙️ *Backend (Render):* [https://mern-portfolio-server.onrender.com](https://mern-portfolio-server.onrender.com)
+⚙️ *Backend (Render):* [https://kamverse.onrender.com](https://kamverse.onrender.com)
 
 ---
 
