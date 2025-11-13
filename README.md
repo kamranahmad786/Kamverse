@@ -1,66 +1,78 @@
 # ⚡ Kamverse — AI Powered Portfolio Website with RAG Chatbot
 
-An interactive **MERN Stack Developer Portfolio** with an integrated **RAG-based AI Chatbot**, dynamic project & certificate management, and visually rich Gen-Z design.
+<p align="center">
+  <em>Next-Gen Portfolio built with React, Node.js, MongoDB, and an AI RAG Chatbot powered by OpenAI , OpenRouter & LangChain</em>
+</p>
 
-This portfolio showcases my projects, skills, and achievements while using cutting-edge technologies such as **LangChain**, **OpenAI**, **Pinecone**, and **Framer Motion** to deliver a futuristic developer experience.
+<p align="center">
+  <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"/></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"/></a>
+  <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"/></a>
+  <a href="https://www.mongodb.com/"><img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/></a>
+  <a href="https://www.langchain.com/"><img src="https://img.shields.io/badge/LangChain-4B8BBE?style=for-the-badge&logo=openai&logoColor=white"/></a>
+  <a href="https://openai.com/"><img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white"/></a>
+  <a href="https://www.pinecone.io/"><img src="https://img.shields.io/badge/Pinecone-0266D6?style=for-the-badge&logo=pinecone&logoColor=white"/></a>
+  <a href="https://openrouter.ai/"><img src="https://img.shields.io/badge/OpenRouter-1E1E1E?style=for-the-badge&logo=openrouter&logoColor=white"/></a>
 
----
-
-## 🚀 Tech Stack
-
-### 🖥 Frontend
-- **React.js (Functional Components + Hooks)**
-- **Tailwind CSS** — modern responsive UI
-- **Framer Motion** — smooth animations
-- **Lucide React** & **React Icons**
-- **Vite** — fast build tool
-
-### ⚙️ Backend
-- **Node.js** + **Express.js**
-- **MongoDB Atlas** — cloud database
-- **Mongoose** — data modeling
-- **Helmet**, **Compression**, **Morgan**, **CORS** — security & optimization
-
-### 🤖 AI & RAG (Retrieval-Augmented Generation)
-- **LangChain.js**
-- **OpenAI API (text-embedding-3-small, gpt-4o-mini)**
-- **Pinecone** — vector database for embeddings
-- **Retrieval Chain** setup for context-aware chatbot
+</p>
 
 ---
 
-## 💡 Key Features
+## 🌐 Live Demo  
+🚀 *Frontend (Vercel):* [https://kamranahmad.vercel.app](https://kamranahmad.vercel.app)  
+⚙️ *Backend (Render):* [https://mern-portfolio-server.onrender.com](https://mern-portfolio-server.onrender.com)
 
-### 🧠 RAG Chatbot
-- Chatbot trained using LangChain + Pinecone + OpenAI.
-- Answers portfolio-related questions dynamically.
-- Uses **Retrieval-Augmented Generation** for context-based answers.
+---
+
+## 🧠 Overview
+A *modern AI-powered developer portfolio* designed to showcase your skills, projects, and achievements in an interactive and visually appealing way.  
+Built using the **MERN stack** with **LangChain**, **OpenAI**, **OpenRouter** and **Pinecone** for a personalized **RAG Chatbot** experience.
+
+---
+
+## 🧩 Tech Stack
+
+| Category | Technologies |
+|-----------|---------------|
+| *Frontend* | React.js, Vite, Tailwind CSS, Framer Motion, Lucide React Icons |
+| *Backend* | Node.js, Express.js, Mongoose, MongoDB Atlas |
+| *AI / RAG* | LangChain.js, OpenAI API, OpenRouter,  Pinecone Vector Database |
+| *Utilities* | Helmet, Compression, Morgan, CORS |
+| *Deployment* | Vercel (Frontend), Render (Backend) |
+
+---
+
+## 🚀 Features
+
+### 🤖 AI RAG Chatbot
+- Built using **LangChain.js**, **Pinecone**, **OpenRouter** and **OpenAI Embeddings**
+- Understands your portfolio content
+- Answers contextually relevant questions about you, your skills, and your work
 
 ### 💼 Dynamic Projects
-- Backend API for creating, reading, and managing projects.
-- Fully responsive and animated project cards on frontend.
-- Projects include description, tech stack, GitHub, and live demo links.
+- Projects fetched directly from MongoDB
+- Each project includes title, tech stack, image, GitHub, and demo links
+- Easily add via Postman API
 
 ### 🪪 Certificates Section
-- Dynamically fetched certificates from MongoDB.
-- Includes title, issuer, preview image, date, and verification link.
-- Easily add new certificates via Postman.
+- Showcases your certifications dynamically from MongoDB
+- Includes preview images, issuer, and verification links
 
-### 👨‍💻 Work Experience Timeline
-- Neon-inspired vertical timeline cards.
-- Modern gradient glow effect.
-- Fully responsive (desktop & mobile).
+### 🧠 Experience Timeline
+- Interactive vertical timeline with glowing gradient cards
+- Fully responsive for both desktop & mobile
 
 ### 🎓 Education Timeline
-- Follows same glowing timeline design as experience.
-- Displays degrees, years, and CGPA/marks beautifully.
+- Styled similar to work experience
+- Shows your degrees, years, and CGPA/marks with elegant animations
 
-### 🧑‍🎨 Aesthetic Enhancements
-- Animated **gradient loader** with floating neon particles.
-- **Cursor follower** — glowing circular pointer animation.
-- **Scroll indicator**, **dark/light mode toggle**, and **responsive navbar**.
-- **Contact form** connected to backend API.
-- **Footer & Navbar** include glowing profile image with gradient effects.
+### 🧑‍🎨 UI & UX Highlights
+- Gen-Z design with *neon glow animations*
+- Gradient *loader screen*
+- *Cursor follower* & scroll indicator
+- Dark/light mode toggle with ThemeContext
+- Fully responsive across all devices
 
 ---
 
@@ -169,3 +181,16 @@ Kamverse/
             ├── errorHandler.js
             └── logger.js
 ```
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone Repository
+
+git clone https://github.com/kamranahmad786/kamverse.git
+
+cd kamverse
+
+### 2️⃣ Backend Setup
+
+cd server
+npm install
+
