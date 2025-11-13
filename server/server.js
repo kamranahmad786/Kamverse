@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import http from "http";
 import app from "./app.js";
-import cors from "cors";
 
 
 // ✅ Load .env from current folder (server/.env)
@@ -19,17 +18,6 @@ const server = http.createServer(app);
 server.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
-
-// production
-
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://kamverse.vercel.app", // your frontend on Vercel
-  ],
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"]
-}));
 
 // Graceful shutdown
 process.on("SIGINT", () => {
