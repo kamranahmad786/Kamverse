@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "../hooks/useTheme";
 
 const MENU_ITEMS = [
@@ -13,6 +13,45 @@ const MENU_ITEMS = [
   "Certificates",
   "Contact",
 ];
+
+// Modern Dot Menu Icon Component
+function DotMenuIcon({ isOpen, onClick }) {
+  return (
+    <motion.button
+      onClick={onClick}
+      className="relative w-10 h-10 flex items-center justify-center group rounded-lg hover:bg-white/10 transition-colors"
+      aria-label="Toggle menu"
+    >
+      {/* Three animated dots */}
+      <motion.div
+        animate={isOpen ? { rotate: 90 } : { rotate: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        className="flex gap-1.5"
+      >
+        {/* Top dot */}
+        <motion.div
+          animate={isOpen ? { y: -8, scale: 0.8 } : { y: 0, scale: 1 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-white to-yellow-300 shadow-lg shadow-pink-500/50"
+        />
+        
+        {/* Middle dot */}
+        <motion.div
+          animate={isOpen ? { scale: 0 } : { scale: 1 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 shadow-lg shadow-pink-500/50"
+        />
+        
+        {/* Bottom dot */}
+        <motion.div
+          animate={isOpen ? { y: 8, scale: 0.8 } : { y: 0, scale: 1 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-yellow-300 to-white shadow-lg shadow-pink-500/50"
+        />
+      </motion.div>
+    </motion.button>
+  );
+}
 
 function ThemeToggleButton() {
   const { theme, toggleTheme } = useTheme();
@@ -38,9 +77,13 @@ function ThemeToggleButton() {
   );
 }
 
-export default function Navbar() {
+export default function Navbar({ onMenuStateChange }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme } = useTheme();
+
+  // Notify parent component about menu state
+  useEffect(() => {
+    onMenuStateChange?.(isOpen);
+  }, [isOpen, onMenuStateChange]);
 
   return (
     <motion.nav
@@ -52,16 +95,16 @@ export default function Navbar() {
       <div className="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 
                       dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 
                       backdrop-blur-md bg-opacity-90">
-        <div className="container mx-auto flex justify-between items-center px-6 py-4">
+        <div className="container mx-auto flex justify-between items-center px-4 md:px-6 py-2 md:py-3">
 
           {/* 🔥 Brand with Link + Neon Glow */}
           <Link to="/" className="flex items-center space-x-2">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="relative flex items-center space-x-3 cursor-pointer group"
+              className="relative flex items-center space-x-2 md:space-x-3 cursor-pointer group"
             >
               {/* Neon Profile Image */}
-              <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-[3px] border-fuchsia-400 
+              <div className="relative w-8 h-8 md:w-12 md:h-12 rounded-full border-[3px] border-fuchsia-400 
                               shadow-[0_0_20px_#f0f,0_0_40px_#a0f] overflow-hidden">
                 <motion.img
                   src="/assets/profileImg.jpg"
@@ -77,11 +120,11 @@ export default function Navbar() {
               </div>
 
               {/* Brand Name */}
-              <h1 className="text-xl md:text-2xl font-extrabold tracking-wide flex items-center">
+              <h1 className="text-sm md:text-2xl font-extrabold tracking-wide flex items-center">
                 <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 bg-clip-text text-transparent drop-shadow-lg">
                   Kamran
                 </span>
-                <span className="ml-1 text-white dark:text-yellow-300 drop-shadow-md">
+                <span className="ml-1 text-white dark:text-yellow-300 drop-shadow-md hidden sm:inline">
                   Ahmad
                 </span>
               </h1>
@@ -104,14 +147,12 @@ export default function Navbar() {
           </div>
 
           {/* 📱 Mobile Menu Toggle */}
-          <div className="md:hidden flex items-center space-x-4">
+          <div className="md:hidden flex items-center space-x-3">
             <ThemeToggleButton />
-            <button
+            <DotMenuIcon 
+              isOpen={isOpen} 
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white p-2 hover:bg-white/20 rounded-full transition-colors"
-            >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
+            />
           </div>
         </div>
 
@@ -122,7 +163,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             className="md:hidden flex flex-col items-center bg-gradient-to-b 
                        from-purple-600 to-pink-500 dark:from-gray-900 dark:to-gray-700 
-                       py-4 space-y-4"
+                       py-2 space-y-2 backdrop-blur-xs"
           >
             {MENU_ITEMS.map((item) => (
               <Link

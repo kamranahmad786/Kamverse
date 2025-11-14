@@ -101,7 +101,7 @@ export default function Skills() {
                          bg-gradient-to-r from-indigo-500 via-pink-500 to-purple-600">
             {category}
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 place-items-center">
             {skills.map((s, i) => (
               <SkillCard
                 key={s._id || i}
@@ -123,7 +123,7 @@ function SkillCard({ name, i, icon }) {
 
   return (
     <motion.div
-      className="relative w-64 h-72 mr-6"
+      className="relative w-full max-w-xs sm:max-w-sm md:w-64 h-72"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: i * 0.1 }}
