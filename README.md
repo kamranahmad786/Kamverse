@@ -317,7 +317,7 @@ Render
 
 🐙 GitHub: https://github.com/kamranahmad786
 
-💼 LinkedIn: https://linkedin.com/in/kamran-ahmad-786
+💼 LinkedIn: https://www.linkedin.com/in/mdkamranahmad/
 
 🧾 License
 
