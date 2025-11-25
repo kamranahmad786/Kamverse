@@ -195,3 +195,133 @@ cd server
 
 npm install
 
+Create .env file
+PORT=4000
+MONGO_URI=your_mongodb_connection_string
+FRONTEND_URL=http://localhost:5173
+
+# OpenAI
+OPENAI_API_KEY=your_openai_api_key
+OPENAI_CHAT_MODEL=gpt-4o-mini
+
+# OpenRouter
+OPENROUTER_API_KEY= your_openrouter_api_key
+
+# Pinecone
+PINECONE_API_KEY=your_pinecone_api_key
+PINECONE_ENVIRONMENT=us-west1-gcp
+PINECONE_INDEX=portfolio-index
+PINECONE_NAMESPACE=portfolio
+
+Run backend:
+npm run dev
+
+👉 Server runs at: http://localhost:4000
+
+3️⃣ Frontend Setup
+cd client
+npm install
+npm run dev
+
+👉 Frontend runs at: http://localhost:5173
+
+🧠 API Endpoints
+
+📁 Projects
+| Method | Endpoint        | Description        |
+| ------ | --------------- | ------------------ |
+| `GET`  | `/api/projects` | Fetch all projects |
+| `POST` | `/api/projects` | Add a new project  |
+
+POST Example (JSON):
+{
+  "title": "BookHub",
+  "description": "A digital library built with MERN stack.",
+  "tech": ["React", "Node.js", "MongoDB", "Express"],
+  "github": "https://github.com/kamranahmad786/bookhub",
+  "demo": "https://bookhub.vercel.app",
+  "image": "https://example.com/bookhub.png"
+}
+
+🪪 Certificates
+| Method | Endpoint            | Description            |
+| ------ | ------------------- | ---------------------- |
+| `GET`  | `/api/certificates` | Fetch all certificates |
+| `POST` | `/api/certificates` | Add a new certificate  |
+
+POST Example (JSON):
+{
+  "title": "Google Cloud Fundamentals",
+  "issuer": "Google",
+  "date": "2025-06-15",
+  "certificateUrl": "https://example.com/certificate.pdf",
+  "image": "https://example.com/certificate.png"
+}
+
+💬 Chatbot
+| Method | Endpoint          | Description            |
+| ------ | ----------------- | ---------------------- |
+| `POST` | `/api/chat/query` | Ask chatbot a question |
+
+Example:
+{ "question": "What are Kamran Ahmad's skills?" }
+
+🌍 Deployment Guide
+
+🧱 Backend Deployment (Render)
+
+Render
+1. Go to Render.com
+2. Create a New Web Service
+3. Connect your GitHub repo → select server folder
+4. Add environment variables from .env
+5. Set:
+       Build Command: npm install
+       Start Command: npm start
+6.Deploy 
+       Render URL example → https://kamverse.onrender.com
+
+ 🖥 Frontend Deployment (Vercel)
+
+ Vercel
+ 1. Go to Vercel.com
+ 2. New Project → Import GitHub Repo
+ 3. Set root = client
+ 4. Add:
+       VITE_BACKEND_URL=https://kamverse.onrender.com
+5. Deploy
+       Vercel URL → https://kamverse.vercel.app
+
+
+🧠 How RAG Works
+
+1. Portfolio data is embedded into vectors using OpenAI embeddings (text-embedding-3-small).
+
+2. Vectors are stored in Pinecone Vector DB.
+
+3. When a user asks a question, LangChain Retriever searches relevant context.
+
+4. The context + question is sent to ChatOpenAI, which generates a contextual reply.
+
+ This gives the chatbot true awareness of your portfolio content
+
+
+🧑‍💻 Author
+
+👋 Kamran Ahmad
+💼 Full Stack Developer — MERN + AI
+
+📧 Email: mohammadkamranahmad786@gmail.com
+
+🌐 Portfolio: https://kamverse.vercel.app
+
+🐙 GitHub: https://github.com/kamranahmad786
+
+💼 LinkedIn: https://linkedin.com/in/kamran-ahmad-786
+
+🧾 License
+
+This project is licensed under the MIT License — feel free to use, modify, and share.
+
+“Innovation is seeing what everybody has seen and thinking what nobody has thought.”
+— Kamran Ahmad
