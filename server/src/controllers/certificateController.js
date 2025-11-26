@@ -1,20 +1,19 @@
 import * as certificateService from "../services/certificateService.js";
 
-export const getCertificates = async (req, res) => {
+export const getAllCertificates = async (req, res, next) => {
   try {
-    const certificates = await certificateService.getAllCertificates();
-    res.json(certificates);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    const certificates = await certificateService.getCertificates();
+    res.json({ certificates });
+  } catch (err) {
+    next(err);
   }
 };
 
-export const addCertificate = async (req, res) => {
+export const addCertificate = async (req, res, next) => {
   try {
-    const newCert = await certificateService.createCertificate(req.body);
-    res.status(201).json(newCert);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
+    const cert = await certificateService.addCertificate(req.body);
+    res.status(201).json(cert);
+  } catch (err) {
+    next(err);
   }
 };
-
