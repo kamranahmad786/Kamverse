@@ -46,12 +46,12 @@ app.use(helmet());
 })();
 
 // ✅ API Routes
-app.use("/api/portfolio", projectRoutes);
+app.use("/api/projects", projectRoutes);
 app.use("/api/skills", skillRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/certificates", certificateRoutes);
-app.use("/api/projects", projectRoutes);
+
 
 // ✅ Health check
 app.get("/health", (req, res) =>
