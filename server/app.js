@@ -46,7 +46,7 @@ app.use(helmet());
 })();
 
 // ✅ API Routes
-app.use("/api/projects", projectRoutes);
+app.use("/api/portfolio", projectRoutes);
 app.use("/api/skills", skillRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/chat", chatRoutes);
