@@ -1,9 +1,14 @@
 import express from "express";
-import { getAllCertificates, addCertificate } from "../controllers/certificateController.js";
+import {
+  getCertificates,
+  addCertificate,
+  removeCertificate
+} from "../controllers/certificateController.js";
 
 const router = express.Router();
 
-router.get("/", getAllCertificates);
+router.get("/", getCertificates);
 router.post("/", addCertificate);
+router.delete("/:id", removeCertificate);
 
 export default router;
