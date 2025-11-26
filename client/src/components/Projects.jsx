@@ -8,7 +8,7 @@ export default function Projects() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await api.get("/projects");
+        const res = await api.get("/api/projects");
         setProjects(res.data.projects || []);
       } catch (err) {
         console.error(err);
