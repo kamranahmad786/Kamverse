@@ -25,13 +25,13 @@ export default function Chatbot() {
       const response = await chatApi.ask(input);
       setMessages((prev) => [
         ...prev,
-        { text: response.reply || "⚠️ No response received", sender: "bot" },
+        { text: response.reply || " No response received", sender: "bot" },
       ]);
     } catch (err) {
       console.error("Chat API Error:", err);
       setMessages((prev) => [
         ...prev,
-        { text: "⚠️ Something went wrong.", sender: "bot" },
+        { text: " Internal Server Error.", sender: "bot" },
       ]);
     } finally {
       setLoading(false);
