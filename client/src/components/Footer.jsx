@@ -1,81 +1,63 @@
 // src/components/Footer.jsx
-import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="w-screen bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 
-                       dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 
-                       text-white dark:text-gray-200 shadow-lg overflow-x-hidden">
-      <div className="w-full px-6 py-8 flex flex-col md:flex-row 
-                      items-center justify-between space-y-4 md:space-y-0">
+    <footer className="w-full border-t border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300">
+      
+      {/* Top Section */}
+      <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between">
         
-        {/* Branding */}
-<motion.div
-  whileHover={{ scale: 1.05 }}
-  className="relative flex items-center space-x-3 cursor-pointer group"
->
-  {/* Neon Profile Image (same as Loader) */}
-  <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-[3px] border-fuchsia-400 
-                  shadow-[0_0_20px_#f0f,0_0_40px_#a0f] overflow-hidden animate-glow-pulse">
-    <motion.img
-      src="/assets/profileImg.jpg"
-      alt="Kamran Ahmad"
-      className="w-full h-full object-cover rounded-full"
-      initial={{ rotate: -10, opacity: 0 }}
-      animate={{ rotate: 0, opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 120, delay: 0.2 }}
-    />
-    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-fuchsia-500 via-purple-600 to-blue-500 opacity-40 blur-xl"></div>
-  </div>
+        {/* Brand */}
+        <div className="flex items-center gap-3">
+          <img
+            src="/assets/profileImg.jpg"
+            alt="Kamran Ahmad"
+            className="w-12 h-12 rounded-full object-cover border border-gray-300 dark:border-gray-700 shadow-sm"
+          />
+          <div className="leading-tight">
+            <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
+              Kamran Ahmad
+            </h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Software Developer
+            </p>
+          </div>
+        </div>
 
-  {/* Brand Name */}
-  <h1 className="text-xl md:text-2xl font-extrabold tracking-wide">
-    <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 bg-clip-text text-transparent drop-shadow-lg">
-      Kamran
-    </span>{" "}
-    <span className="text-white dark:text-yellow-300 drop-shadow-md">
-      Ahmad
-    </span>
-  </h1>
-</motion.div>
-
-
-        {/* Links */}
-        <div className="flex space-x-6">
-          <motion.a
+        {/* Social Links */}
+        <div className="flex items-center gap-6 mt-4 md:mt-0">
+          
+          <a
             href="https://github.com/kamranahmad786"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.2, rotate: 5 }}
-            className="hover:text-yellow-300 transition-colors"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            <Github size={24} />
-          </motion.a>
+            <Github size={22} />
+          </a>
 
-          <motion.a
+          <a
             href="https://www.linkedin.com/in/mdkamranahmad/"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.2, rotate: 5 }}
-            className="hover:text-yellow-300 transition-colors"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            <Linkedin size={24} />
-          </motion.a>
+            <Linkedin size={22} />
+          </a>
 
-          <motion.a
+          <a
             href="mailto:mohammadkamranahmad786@gmail.com"
-            whileHover={{ scale: 1.2, rotate: 5 }}
-            className="hover:text-yellow-300 transition-colors"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            <Mail size={24} />
-          </motion.a>
+            <Mail size={22} />
+          </a>
         </div>
       </div>
 
-      {/* Bottom note */}
-      <div className="w-full text-center py-4 text-sm bg-black/20 dark:bg-black/40">
-        © {new Date().getFullYear()} Kamran Ahmad. All rights reserved.
+      {/* Bottom Note */}
+      <div className="text-center py-4 text-sm bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-400">
+        © {new Date().getFullYear()} Kamran Ahmad — All rights reserved.
       </div>
     </footer>
   );
