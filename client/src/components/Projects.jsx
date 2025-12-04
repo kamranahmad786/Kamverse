@@ -11,7 +11,7 @@ export default function Projects() {
         const res = await api.get("/api/projects");
         setProjects(res.data.projects || []);
       } catch (err) {
-        console.error(err);
+        console.error("Error loading projects:", err);
       }
     })();
   }, []);
@@ -19,69 +19,84 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="w-full min-h-screen px-6 py-16 text-white bg-gradient-to-br from-gray-900 via-black to-gray-800"
+      className="w-full min-h-screen px-6 py-20 bg-white dark:bg-gray-900"
     >
-      {/* Section Title */}
-      <h2 className="mb-16 text-4xl font-extrabold tracking-wide text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-pink-500 to-purple-600 drop-shadow-lg">
-         My Projects
+      {/* Title */}
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white">
+        Featured Projects
       </h2>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {/* SaaS Grid */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {projects.length === 0 ? (
-          <div className="text-center text-gray-400 col-span-full">
-            No projects yet
-          </div>
+          <p className="col-span-full text-center text-gray-500 dark:text-gray-400">
+            Loading projects...
+          </p>
         ) : (
           projects.map((p) => (
             <div
               key={p._id}
-              className="bg-gray-800/70 rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition transform duration-300 p-6 flex flex-col justify-between"
+              className="group border border-gray-200 dark:border-gray-700 rounded-xl 
+                         p-6 bg-white dark:bg-gray-800 shadow-sm 
+                         hover:shadow-lg hover:border-gray-300 
+                         transition-all duration-300 flex flex-col"
             >
+              {/* Project Image */}
+              {p.image && (
+                <div className="w-full h-48 overflow-hidden rounded-lg mb-5">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              )}
+
               {/* Title */}
-              <h3 className="mb-3 text-2xl font-semibold">{p.title}</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                {p.title}
+              </h3>
 
               {/* Description */}
-              <p className="flex-1 text-sm text-gray-300">{p.description}</p>
+              <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-1">
+                {p.description}
+              </p>
 
               {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2 mt-4">
-                {(p.techStack || []).map((techStack, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 text-xs font-medium rounded-full shadow-md bg-gradient-to-r from-indigo-500 to-purple-500"
-                  >
-                    {techStack}
-                  </span>
-                ))}
-              </div>
-
-              {/* Image */}
-
-              {p.image && (
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  className="object-cover w-full h-48 mt-4 shadow-md rounded-long"></img>
+              {p.techStack?.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {p.techStack.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-700 
+                                 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               )}
 
               {/* Links */}
-              <div className="flex items-center justify-between mt-6">
+              <div className="flex justify-between items-center mt-6">
+                {/* Live Link */}
                 <a
                   href={p.link || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 font-semibold text-black transition rounded-lg bg-gradient-to-r from-pink-500 to-yellow-500 hover:opacity-90"
+                  className="text-blue-600 dark:text-blue-400 font-medium flex items-center gap-1 hover:underline"
                 >
-                  Live <FaExternalLinkAlt />
+                  Live Demo <FaExternalLinkAlt size={14} />
                 </a>
+
+                {/* GitHub Link */}
                 <a
                   href={p.github || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 font-semibold bg-gray-700 rounded-lg hover:bg-gray-600"
+                  className="text-gray-800 dark:text-gray-200 font-medium flex items-center gap-1 hover:underline"
                 >
-                  GitHub <FaGithub />
+                  GitHub <FaGithub size={16} />
                 </a>
               </div>
             </div>

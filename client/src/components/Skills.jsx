@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import api from "../services/api";
 import { motion } from "framer-motion";
 
-// React Icons
+// Icons
 import {
   FaReact,
   FaNodeJs,
@@ -11,6 +11,7 @@ import {
   FaCss3Alt,
   FaPython,
   FaDatabase,
+  FaGitAlt,
 } from "react-icons/fa";
 import {
   SiMongodb,
@@ -19,64 +20,86 @@ import {
   SiJavascript,
   SiMysql,
   SiCplusplus,
+  SiTypescript,
+  SiNextdotjs,
+  SiRedux,
+  SiDocker,
+  SiAmazons3,
 } from "react-icons/si";
 
 export default function Skills() {
   const [skills, setSkills] = useState([]);
 
-  // Map skill names to icons + glow colors
   const skillIcons = {
-    React: { icon: <FaReact size={50} color="#61dafb" />, glow: "shadow-cyan-400" },
-    "Node.js": { icon: <FaNodeJs size={50} color="#3C873A" />, glow: "shadow-green-400" },
-    MongoDB: { icon: <SiMongodb size={50} color="#47A248" />, glow: "shadow-emerald-400" },
-    Express: { icon: <SiExpress size={50} color="#000" />, glow: "shadow-gray-400" },
-    "Tailwind CSS": { icon: <SiTailwindcss size={50} color="#38B2AC" />, glow: "shadow-teal-400" },
-    SQL: { icon: <SiMysql size={50} color="#F29111" />, glow: "shadow-orange-400" },
-    JavaScript: { icon: <SiJavascript size={50} color="#F7DF1E" />, glow: "shadow-yellow-400" },
-    HTML5: { icon: <FaHtml5 size={50} color="#E34F26" />, glow: "shadow-orange-500" },
-    CSS3: { icon: <FaCss3Alt size={50} color="#1572B6" />, glow: "shadow-blue-500" },
-    Python: { icon: <FaPython size={50} color="#306998" />, glow: "shadow-indigo-400" },
-    Database: { icon: <FaDatabase size={50} color="#F29111" />, glow: "shadow-amber-400" },
-    "C++": { icon: <SiCplusplus size={50} color="#00599C" />, glow: "shadow-blue-400" },
-    "UI/UX": { icon: <span className="text-4xl">🎨</span>, glow: "shadow-pink-400" },
+    React: <FaReact size={40} className="text-blue-400" />,
+    "Next.js": <SiNextdotjs size={40} className="text-black dark:text-white" />,
+    "Redux Toolkit": <SiRedux size={40} className="text-purple-500" />,
+    TypeScript: <SiTypescript size={40} className="text-blue-500" />,
+    "Node.js": <FaNodeJs size={40} className="text-green-500" />,
+    MongoDB: <SiMongodb size={40} className="text-green-600" />,
+    Express: <SiExpress size={40} className="text-gray-400" />,
+    "Tailwind CSS": <SiTailwindcss size={40} className="text-teal-400" />,
+    SQL: <SiMysql size={40} className="text-orange-500" />,
+    JavaScript: <SiJavascript size={40} className="text-yellow-400" />,
+    HTML5: <FaHtml5 size={40} className="text-red-500" />,
+    CSS3: <FaCss3Alt size={40} className="text-blue-500" />,
+    Python: <FaPython size={40} className="text-blue-400" />,
+    Database: <FaDatabase size={40} className="text-gray-300" />,
+    Docker: <SiDocker size={40} className="text-blue-400" />,
+    Cloud: <SiAmazons3 size={40} className="text-yellow-500" />,
+    Git: <FaGitAlt size={40} className="text-orange-500" />,
+    DSA: <span className="text-3xl font-bold">📘</span>,
+    "System Design": <span className="text-3xl font-bold">🏗️</span>,
+    "JWT Auth": <span className="text-2xl font-bold">🔐</span>,
+    "REST APIs": <span className="text-2xl font-bold">🔗</span>,
+    "UI/UX": <span className="text-3xl">🎨</span>,
+    "C++": <SiCplusplus size={40} className="text-blue-400" />,
   };
 
-  // Default fallback skills
+  // Updated Default Skills
   const defaultSkills = [
-    { _id: 1, name: "React", category: "Frontend" },
-    { _id: 2, name: "JavaScript", category: "Frontend" },
-    { _id: 3, name: "HTML5", category: "Frontend" },
-    { _id: 4, name: "CSS3", category: "Frontend" },
-    { _id: 5, name: "Tailwind CSS", category: "Frontend" },
-    { _id: 6, name: "Node.js", category: "Backend" },
-    { _id: 7, name: "Express", category: "Backend" },
-    { _id: 8, name: "MongoDB", category: "Backend" },
-    { _id: 9, name: "SQL", category: "Backend" },
-    { _id: 10, name: "Database", category: "Backend" },
-    { _id: 11, name: "Python", category: "Others" },
-    { _id: 12, name: "C++", category: "Others" },
-    { _id: 13, name: "UI/UX", category: "Others" },
-    
+    // FRONTEND
+    { name: "React", category: "Frontend" },
+    { name: "Next.js", category: "Frontend" },
+    { name: "Redux Toolkit", category: "Frontend" },
+    { name: "TypeScript", category: "Frontend" },
+    { name: "JavaScript", category: "Frontend" },
+    { name: "HTML5", category: "Frontend" },
+    { name: "CSS3", category: "Frontend" },
+    { name: "Tailwind CSS", category: "Frontend" },
+
+    // BACKEND
+    { name: "Node.js", category: "Backend" },
+    { name: "Express", category: "Backend" },
+    { name: "MongoDB", category: "Backend" },
+    { name: "SQL", category: "Backend" },
+    { name: "REST APIs", category: "Backend" },
+    { name: "JWT Auth", category: "Backend" },
+    { name: "Docker", category: "Backend" },
+    { name: "Cloud", category: "Backend" },
+
+    // OTHERS
+    { name: "Python", category: "Others" },
+    { name: "C++", category: "Others" },
+    { name: "Git", category: "Others" },
+    { name: "DSA", category: "Others" },
+    { name: "System Design", category: "Others" },
+    { name: "UI/UX", category: "Others" },
   ];
 
   useEffect(() => {
     (async () => {
       try {
         const res = await api.get("/skills");
-        if (res.data.skills && res.data.skills.length > 0) {
-          setSkills(res.data.skills);
-        } else {
-          setSkills(defaultSkills);
-        }
-      } catch (err) {
-        console.error(err);
+        if (res.data.skills?.length) setSkills(res.data.skills);
+        else setSkills(defaultSkills);
+      } catch {
         setSkills(defaultSkills);
       }
     })();
   }, []);
 
-  // Group skills by category
-  const groupedSkills = {
+  const grouped = {
     Frontend: skills.filter((s) => s.category === "Frontend"),
     Backend: skills.filter((s) => s.category === "Backend"),
     Others: skills.filter((s) => s.category === "Others"),
@@ -85,76 +108,47 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-16 px-6 text-white"
+      className="w-full min-h-screen px-6 py-20 bg-white dark:bg-gray-900"
     >
-      {/* ⚡ Title */}
-      <h2 className="text-4xl font-extrabold text-center text-transparent bg-clip-text 
-                     bg-gradient-to-r from-indigo-500 via-pink-500 to-purple-600 
-                     mb-16 tracking-wide drop-shadow-lg">
-         My Superpowers (Skills)
+      <h2 className="text-center text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-16">
+        Technical Skills
       </h2>
 
-      {/* Categories */}
-      {Object.entries(groupedSkills).map(([category, skills]) => (
-        <div key={category} className="mb-16 w-full max-w-6xl ml-auto mr-auto">
-          <h3 className="text-2xl font-bold mb-8 text-transparent bg-clip-text 
-                         bg-gradient-to-r from-indigo-500 via-pink-500 to-purple-600">
-            {category}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 place-items-center">
-            {skills.map((s, i) => (
-              <SkillCard
-                key={s._id || i}
-                i={i}
-                name={s.name}
-                icon={skillIcons[s.name]?.icon}
-                glow={skillIcons[s.name]?.glow || "shadow-purple-400"}
-              />
-            ))}
+      <div className="max-w-6xl mx-auto space-y-16">
+        {Object.entries(grouped).map(([category, list]) => (
+          <div key={category}>
+            <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-8">
+              {category}
+            </h3>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+              {list.map((skill, i) => (
+                <SkillCard
+                  key={i}
+                  name={skill.name}
+                  icon={skillIcons[skill.name]}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </section>
   );
 }
 
-function SkillCard({ name, i, icon }) {
-  const gradient = `linear-gradient(135deg, ${hue(i * 40)}, ${hue(i * 40 + 60)})`;
-
+function SkillCard({ name, icon }) {
   return (
     <motion.div
-      className="relative w-full max-w-xs sm:max-w-sm md:w-64 h-72"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: i * 0.1 }}
-      viewport={{ once: true }}
+      whileHover={{ y: -4 }}
+      className="border border-gray-200 dark:border-gray-700 rounded-xl 
+                 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md
+                 transition-all duration-300 p-6 flex flex-col items-center justify-center gap-3"
     >
-      {/* Outer gradient border */}
-      <div
-        className="w-full h-full rounded-2xl p-[3px]" // border thickness
-        style={{ background: gradient }}
-      >
-        {/* Inner card */}
-        <div className="flex flex-col justify-center items-center w-full h-full 
-                        rounded-2xl bg-gray-900 text-white shadow-xl 
-                        transition-all duration-500 hover:scale-105">
-          <span className="text-6xl mb-3">{icon || "💡"}</span>
-          <p className="text-xl font-semibold">{name}</p>
-        </div>
-      </div>
+      <div className="text-5xl">{icon}</div>
+      <p className="text-lg font-medium text-gray-900 dark:text-gray-200">
+        {name}
+      </p>
     </motion.div>
   );
 }
-
-
-
-
-
-/* Dynamic gradient colors */
-const hue = (h) => `hsl(${h}, 100%, 50%)`;
-
-/* Gradient splash shape */
-const splash = {
-  position: "absolute",
-  clipPath: `path("M 0 303.5 C 0 292.454 8.995 285.101 20 283.5 L 460 219.5 C 470.085 218.033 480 228.454 480 239.5 L 500 430 C 500 441.046 491.046 450 480 450 L 20 450 C 8.954 450 0 441.046 0 430 Z")`,
-};
