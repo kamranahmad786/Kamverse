@@ -1,3 +1,4 @@
+// src/components/Experience.jsx
 import { Briefcase } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -8,91 +9,87 @@ export default function Experience() {
       role: "Google Student Ambassador",
       duration: "Sep 2025 – Present",
       description:
-        "Collaborating with the Google team to promote AI innovation and student engagement through hands-on programs.",
-      colors: "from-pink-500 via-purple-500 to-indigo-600",
-      glow: "shadow-[0_0_35px_rgba(168,85,247,0.8)]",
+        "Supporting Google’s developer ecosystem, conducting workshops, and enabling students to adopt modern AI technologies.",
     },
     {
       company: "PrOrator",
-      role: "Front-End Development Intern",
-      duration: "May 2025 - Jul 2025",
+      role: "Frontend Development Intern",
+      duration: "May 2025 – Jul 2025",
       description:
-        "Developed high-performance web apps with MERN stack and integrated RAG-based AI chat experiences.",
-      colors: "from-cyan-400 via-blue-500 to-indigo-600",
-      glow: "shadow-[0_0_35px_rgba(99,102,241,0.8)]",
+        "Built production-ready interfaces, optimized performance, and implemented reusable UI components in a MERN environment.",
     },
     {
       company: "Google Developer Club, BBSR",
       role: "Member",
-      duration: "2024 - Present",
+      duration: "2024 – Present",
       description:
-        "Led developers in open-source projects, mentored peers, and organized coding workshops.",
-      colors: "from-fuchsia-400 via-pink-500 to-red-500",
-      glow: "shadow-[0_0_35px_rgba(236,72,153,0.8)]",
+        "Contributed to open-source community events, mentored junior developers, and helped organize technical bootcamps.",
     },
   ];
 
   return (
     <section
       id="experience"
-      className="relative w-full min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-16 px-6 text-white flex flex-col items-center"
+      className="w-full min-h-screen px-6 py-20 bg-white dark:bg-gray-900"
     >
       {/* Title */}
-      <h2 className="text-4xl font-extrabold text-transparent bg-clip-text 
-                     bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 
-                     mb-16 tracking-wide flex items-center gap-2">
-        <Briefcase size={36} />
-        My Work Experience
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900 dark:text-white flex justify-center gap-2">
+        <Briefcase size={38} />
+        Work Experience
       </h2>
 
-      {/* Vertical Timeline Line */}
-      <div className="absolute top-40 bottom-20 left-1/2 w-[3px] bg-gradient-to-b from-fuchsia-500 via-purple-500 to-indigo-500 transform -translate-x-1/2 
-                      md:block hidden z-10 blur-[1px]"></div>
+      <div className="relative max-w-5xl mx-auto">
+        {/* Desktop Vertical Line */}
+        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gray-300 dark:bg-gray-700"></div>
 
-      {/* Mobile Timeline Line (visible on small screens) */}
-      <div className="absolute top-40 bottom-20 left-8 w-[3px] bg-gradient-to-b from-fuchsia-500 via-purple-500 to-indigo-500 
-                      md:hidden block z-10 blur-[1px]"></div>
+        {/* Mobile Vertical Line */}
+        <div className="md:hidden absolute left-4 top-0 bottom-0 w-[2px] bg-gray-300 dark:bg-gray-700"></div>
 
-      {/* Experience Cards */}
-      <div className="w-full max-w-6xl flex flex-col gap-16 relative z-20">
-        {experiences.map((exp, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            viewport={{ once: true }}
-            className={`relative flex ${
-              index % 2 === 0 ? "md:justify-start" : "md:justify-end"
-            } justify-start`}
-          >
-            {/* Timeline Dot */}
-            <div
-              className={`absolute ${
-                index % 2 === 0 ? "md:left-1/2 left-[7px]" : "md:left-1/2 left-[7px]"
-              } w-6 h-6 rounded-full bg-gradient-to-r ${exp.colors} border-4 border-white 
-              transform md:-translate-x-1/2 z-30`}
-            ></div>
-
-            {/* Card */}
+        {/* Experience Cards */}
+        <div className="flex flex-col gap-16">
+          {experiences.map((exp, index) => (
             <motion.div
-              whileHover={{ scale: 1.05, rotateY: 5 }}
-              transition={{ type: "spring", stiffness: 120 }}
-              className={`relative w-full md:w-[45%] ml-12 md:ml-0 p-[2px] rounded-3xl bg-gradient-to-r ${exp.colors} ${exp.glow}`}
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className={`relative flex ${
+                index % 2 === 0 ? "md:justify-start" : "md:justify-end"
+              } md:items-start items-center`}
             >
-              <div className="bg-[#0d0d11]/90 backdrop-blur-xl p-6 rounded-3xl">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
+              {/* Timeline Dot */}
+              <div
+                className={`absolute ${
+                  index % 2 === 0 ? "md:left-1/2 left-4" : "md:left-1/2 left-4"
+                } w-4 h-4 rounded-full bg-gray-700 dark:bg-gray-300 border-4 border-white dark:border-gray-900 
+                transform md:-translate-x-1/2 z-20`}
+              ></div>
+
+              {/* Card */}
+              <div
+                className={`w-full md:w-[48%] bg-gray-50 dark:bg-gray-800 border border-gray-200 
+                dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-all px-6 py-6`}
+              >
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                   {exp.role}
                 </h3>
-                <p className="text-lg text-gray-300 mt-1">{exp.company}</p>
-                <p className="text-sm text-gray-400 italic">{exp.duration}</p>
-                <p className="text-sm text-gray-400 mt-3 leading-relaxed">
+
+                <p className="text-gray-700 dark:text-gray-300 font-medium mt-1">
+                  {exp.company}
+                </p>
+
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  {exp.duration}
+                </p>
+
+                <p className="text-gray-600 dark:text-gray-300 text-sm mt-4 leading-relaxed">
                   {exp.description}
                 </p>
               </div>
             </motion.div>
-          </motion.div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

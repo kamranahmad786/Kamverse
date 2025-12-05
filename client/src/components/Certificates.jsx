@@ -15,60 +15,79 @@ export default function Certificates() {
   return (
     <section
       id="certificates"
-      className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-16 px-6 text-white "
+      className="w-full min-h-screen py-20 px-6 bg-white dark:bg-gray-900"
     >
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto">
+
+        {/* Section Title */}
         <motion.h2
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-extrabold mb-12 
-                     bg-gradient-to-r from-fuchsia-400 via-purple-400 to-blue-400 
-                     text-transparent bg-clip-text"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900 dark:text-white"
         >
-          My Certificates
+          Certificates & Achievements
         </motion.h2>
 
+        {/* Loading State */}
         {certificates.length === 0 ? (
-          <p className="text-gray-400 mt-10">Loading certificates...</p>
+          <p className="text-center text-gray-600 dark:text-gray-400 mt-10">
+            Loading certificates...
+          </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
             {certificates.map((cert, index) => (
               <motion.div
                 key={cert._id}
-                initial={{ opacity: 0, scale: 0.9, y: 40 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-gradient-to-br from-gray-800/80 to-gray-900/60 
-                           rounded-2xl shadow-xl overflow-hidden border border-gray-700 
-                           hover:shadow-[0_0_30px_#9333ea] transition-all duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="border border-gray-200 dark:border-gray-700 rounded-xl 
+                           shadow-sm hover:shadow-md transition-all bg-gray-50 
+                           dark:bg-gray-800 overflow-hidden"
               >
-                <div className="relative group">
+                {/* Certificate Image */}
+                <div className="relative">
                   <img
                     src={cert.image}
                     alt={cert.title}
-                    className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-48 object-cover"
                   />
+                  
                   {cert.link && (
                     <a
                       href={cert.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute top-3 right-3 bg-black/50 p-2 rounded-full 
-                                 hover:bg-fuchsia-500 transition-colors"
+                      className="absolute top-3 right-3 bg-white/80 dark:bg-gray-900/60 
+                                 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 
+                                 transition"
                     >
-                      <ExternalLink size={18} />
+                      <ExternalLink size={18} className="text-gray-900 dark:text-white" />
                     </a>
                   )}
                 </div>
 
-                <div className="p-5 text-left">
-                  <h3 className="text-xl font-bold text-fuchsia-400">{cert.title}</h3>
-                  <p className="text-gray-300 text-sm mt-1">{cert.issuer}</p>
-                  <p className="text-gray-500 text-xs mt-1 italic">{cert.date}</p>
+                {/* Certificate Info */}
+                <div className="p-5">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    {cert.title}
+                  </h3>
+
+                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                    {cert.issuer}
+                  </p>
+
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 italic">
+                    {cert.date}
+                  </p>
                 </div>
               </motion.div>
             ))}
+
           </div>
         )}
       </div>

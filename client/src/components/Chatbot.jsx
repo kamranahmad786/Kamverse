@@ -1,17 +1,20 @@
+// src/components/Chatbot.jsx
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import chatApi from "../services/chatApi";
-import { useTheme } from "../hooks/useTheme";
+import { MessageSquare, X } from "lucide-react";
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([
-    { text: "👋 Hi! I'm BaatChet, your AI assistant. Ask me about Kamran's projects, skills, or experience!", sender: "bot" },
+    {
+      text: "Hello! I'm your assistant. Feel free to ask about Kamran’s projects, skills, or experience.",
+      sender: "bot",
+    },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const messagesEndRef = useRef(null);
-  const { theme } = useTheme();
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -25,127 +28,122 @@ export default function Chatbot() {
       const response = await chatApi.ask(input);
       setMessages((prev) => [
         ...prev,
-        { text: response.reply || " No response received", sender: "bot" },
+        { text: response.reply || "No response available.", sender: "bot" },
       ]);
     } catch (err) {
-      console.error("Chat API Error:", err);
+      console.error(err);
       setMessages((prev) => [
         ...prev,
-        { text: " Internal Server Error.", sender: "bot" },
+        { text: "Something went wrong. Please try again.", sender: "bot" },
       ]);
     } finally {
       setLoading(false);
     }
   };
 
-  // Scroll to bottom of messages
+  // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   return (
-    <div className="fixed bottom-5 right-5 z-50">
+    <div className="fixed bottom-6 right-6 z-50">
       <AnimatePresence>
-        {/* Floating Toggle Button */}
+        {/* Floating Open Button */}
         {!open && (
           <motion.button
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
             onClick={() => setOpen(true)}
-            className="bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-800 dark:to-pink-700 
-                     text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            whileHover={{ scale: 1.1 }}
+            className="flex items-center justify-center w-12 h-12 rounded-full 
+                     bg-gray-900 dark:bg-gray-200 text-white dark:text-black shadow-lg"
           >
-            💬
+            <MessageSquare size={22} />
           </motion.button>
         )}
 
         {/* Chat Window */}
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="w-80 md:w-96 h-[500px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl 
-                     flex flex-col overflow-hidden border border-gray-200 dark:border-gray-700"
+            exit={{ opacity: 0, y: 25 }}
+            className="w-80 md:w-96 h-[500px] bg-white dark:bg-gray-900 
+                     border border-gray-200 dark:border-gray-700 
+                     rounded-xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-800 dark:to-pink-700 
-                          text-white p-4 flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <span className="text-xl font-bold">BaatChet</span>
-                <span className="text-xs bg-white/20 px-2 py-1 rounded-full">AI Assistant</span>
-              </div>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+            <div className="flex justify-between items-center px-4 py-3 border-b 
+                            border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+              <span className="font-semibold text-gray-900 dark:text-gray-100">
+                Assistant
+              </span>
+
+              <button
                 onClick={() => setOpen(false)}
-                className="text-white hover:text-red-200 transition-colors"
+                className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
               >
-                ✖
-              </motion.button>
+                <X size={20} />
+              </button>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-50 dark:bg-gray-900">
+            {/* Messages Area */}
+            <div className="flex-1 px-4 py-3 overflow-y-auto space-y-3 bg-gray-50 dark:bg-gray-900">
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+                  className={`flex ${
+                    msg.sender === "user" ? "justify-end" : "justify-start"
+                  }`}
                 >
                   <div
-                    className={`p-3 rounded-2xl max-w-[80%] ${
-                      msg.sender === "user"
-                        ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white"
-                        : "bg-white dark:bg-gray-700 dark:text-gray-200 shadow-md"
-                    }`}
+                    className={`px-4 py-2 rounded-lg text-sm max-w-[75%] 
+                      ${
+                        msg.sender === "user"
+                          ? "bg-gray-900 text-white dark:bg-gray-200 dark:text-black"
+                          : "bg-white dark:bg-gray-800 dark:text-gray-100 border border-gray-200 dark:border-gray-700"
+                      }`}
                   >
                     {msg.text}
                   </div>
                 </motion.div>
               ))}
+
+              {/* Typing Indicator */}
               {loading && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex gap-2 items-center text-gray-500 dark:text-gray-400"
-                >
-                  <div className="w-2 h-2 bg-current rounded-full animate-bounce" />
-                  <div className="w-2 h-2 bg-current rounded-full animate-bounce delay-100" />
-                  <div className="w-2 h-2 bg-current rounded-full animate-bounce delay-200" />
-                </motion.div>
+                <div className="flex space-x-2 items-center text-gray-500 dark:text-gray-400">
+                  <span className="w-2 h-2 bg-current rounded-full animate-bounce"></span>
+                  <span className="w-2 h-2 bg-current rounded-full animate-bounce delay-150"></span>
+                  <span className="w-2 h-2 bg-current rounded-full animate-bounce delay-300"></span>
+                </div>
               )}
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
-            <div className="p-3 md:p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            {/* Input Area */}
+            <div className="p-3 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
               <div className="flex items-center gap-2">
                 <input
                   type="text"
+                  placeholder="Type a message..."
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                  className="flex-1 px-4 py-3 md:py-2 rounded-full border border-gray-300 dark:border-gray-600 
-                           bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
-                           focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400
-                           placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                  placeholder="Type your message..."
+                  className="flex-1 px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 
+                           bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                           focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500 outline-none"
                 />
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   onClick={sendMessage}
-                  className="bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-800 dark:to-pink-700
-                           text-white px-4 md:px-6 py-3 md:py-2 rounded-full hover:shadow-lg transition-shadow whitespace-nowrap"
+                  className="px-4 py-2 bg-gray-900 dark:bg-gray-200 text-white dark:text-black 
+                             rounded-lg font-medium hover:opacity-90 transition"
                 >
                   Send
-                </motion.button>
+                </button>
               </div>
             </div>
           </motion.div>
@@ -154,5 +152,3 @@ export default function Chatbot() {
     </div>
   );
 }
-
-
