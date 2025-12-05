@@ -1,42 +1,40 @@
-// src/components/Experience.jsx
-import { Briefcase } from "lucide-react";
+// src/components/Education.jsx
+import React from "react";
+import { GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 
-export default function Experience() {
-  const experiences = [
+export default function Education() {
+  const educationList = [
     {
-      company: "Google Gemini",
-      role: "Google Student Ambassador",
-      duration: "Sep 2025 – Present",
-      description:
-        "Supporting Google’s developer ecosystem, conducting workshops, and enabling students to adopt modern AI technologies.",
+      degree: "B.Tech in Computer Science & Engineering",
+      institute: "BPUT",
+      year: "2023 – 2026",
+      mark: "7.27 CGPA (Till 6th semester)",
     },
     {
-      company: "PrOrator",
-      role: "Frontend Development Intern",
-      duration: "May 2025 – Jul 2025",
-      description:
-        "Built production-ready interfaces, optimized performance, and implemented reusable UI components in a MERN environment.",
+      degree: "Diploma in Engineering",
+      institute: "JUT",
+      year: "2020 – 2023",
+      mark: "78.96% (Aggregate)",
     },
     {
-      company: "Google Developer Club, BBSR",
-      role: "Member",
-      duration: "2024 – Present",
-      description:
-        "Contributed to community events, mentored juniors, and organized technical bootcamps.",
+      degree: "Schooling (10th)",
+      institute: "ICSE",
+      year: "2018 – 2019",
+      mark: "64.8% (Aggregate)",
     },
   ];
 
   return (
     <section
-      id="experience"
+      id="education"
       className="w-full min-h-screen px-6 py-20 bg-white dark:bg-gray-900"
     >
       {/* Title */}
       <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 
-      text-gray-900 dark:text-white flex justify-center gap-2">
-        <Briefcase size={38} />
-        Work Experience
+        text-gray-900 dark:text-white flex justify-center gap-2">
+        <GraduationCap size={38} />
+        Education
       </h2>
 
       <div className="relative max-w-5xl mx-auto">
@@ -49,9 +47,9 @@ export default function Experience() {
         <div className="md:hidden absolute left-6 top-0 bottom-0 
                         w-[2px] bg-gray-300 dark:bg-gray-700"></div>
 
-        {/* Experience Items */}
+        {/* Timeline Items */}
         <div className="flex flex-col gap-16">
-          {experiences.map((exp, index) => (
+          {educationList.map((edu, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 40 }}
@@ -79,32 +77,32 @@ export default function Experience() {
               {/* CARD */}
               <div
                 className={`
-                  w-full md:w-[48%] 
-                  bg-gray-50 dark:bg-gray-800 
-                  border border-gray-200 dark:border-gray-700 
-                  rounded-xl shadow-sm hover:shadow-md 
+                  w-full md:w-[48%]
+                  bg-gray-50 dark:bg-gray-800
+                  border border-gray-200 dark:border-gray-700
+                  rounded-xl shadow-sm hover:shadow-md
                   transition-all px-6 py-6
                   
                   ${index % 2 === 0 ? "md:pr-10" : "md:pl-10"}
-                  
-                  /* MOBILE PADDING SO TIMELINE DOESN’T TOUCH TEXT */
-                  pl-12 
+
+                  /* Mobile padded so line does NOT overlap */
+                  pl-12
                 `}
               >
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  {exp.role}
+                  {edu.degree}
                 </h3>
 
-                <p className="mt-1 font-medium text-gray-700 dark:text-gray-300">
-                  {exp.company}
+                <p className="text-gray-700 dark:text-gray-300 font-medium mt-1">
+                  {edu.institute}
                 </p>
 
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                  {exp.duration}
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  {edu.year}
                 </p>
 
-                <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                  {exp.description}
+                <p className="mt-3 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {edu.mark}
                 </p>
               </div>
             </motion.div>
