@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTheme } from "../hooks/useTheme";
 
@@ -27,11 +27,12 @@ export default function Navbar({ onMenuStateChange }) {
       initial={{ y: -60 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 90 }}
-      className="fixed top-0 left-0 w-full z-50 border-b border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg"
+      className="fixed top-0 left-0 w-full z-50 border-b border-gray-300 dark:border-gray-700 
+                 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg"
     >
       <div className="container mx-auto flex justify-between items-center px-4 md:px-6 py-3">
 
-        {/* ---------- BRAND (Professional Look) ---------- */}
+        {/* Brand */}
         <Link to="/" className="flex items-center gap-3">
           <img
             src="/assets/profileImg.jpg"
@@ -49,45 +50,41 @@ export default function Navbar({ onMenuStateChange }) {
           </div>
         </Link>
 
-        {/* ---------- DESKTOP MENU ---------- */}
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           {MENU_ITEMS.map((item) => (
             <Link
               key={item}
               to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
+              className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 
+                         font-medium transition-colors"
             >
               {item}
             </Link>
           ))}
 
-          {/* Theme Toggle */}
+          {/* 🔆 / 🌑 Theme Toggle */}
           <motion.button
             onClick={toggleTheme}
             whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            className="p-2 rounded-full border border-gray-300 dark:border-gray-600 
+                       hover:bg-gray-100 dark:hover:bg-gray-800 transition text-xl"
           >
-            {theme === "dark" ? (
-              <Sun size={20} className="text-yellow-300" />
-            ) : (
-              <Moon size={20} className="text-gray-700" />
-            )}
+            {theme === "dark" ? "🔆" : "🌑"}
           </motion.button>
         </div>
 
-        {/* ---------- MOBILE MENU BUTTON ---------- */}
+        {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-3">
 
+          {/* 🔆 / 🌑 Mobile Toggle */}
           <motion.button
             onClick={toggleTheme}
             whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            className="p-2 rounded-full border border-gray-300 dark:border-gray-600 
+                       hover:bg-gray-100 dark:hover:bg-gray-800 transition text-xl"
           >
-            {theme === "dark" ? (
-              <Sun size={20} className="text-yellow-300" />
-            ) : (
-              <Moon size={20} className="text-gray-700" />
-            )}
+            {theme === "dark" ? "🔆" : "🌑"}
           </motion.button>
 
           <button onClick={() => setIsOpen(!isOpen)}>
@@ -100,7 +97,7 @@ export default function Navbar({ onMenuStateChange }) {
         </div>
       </div>
 
-      {/* ---------- MOBILE DROPDOWN ---------- */}
+      {/* Mobile Dropdown */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -113,7 +110,8 @@ export default function Navbar({ onMenuStateChange }) {
                 key={item}
                 to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                 onClick={() => setIsOpen(false)}
-                className="text-gray-800 dark:text-gray-200 text-lg font-medium hover:text-blue-600 dark:hover:text-blue-400 transition"
+                className="text-gray-800 dark:text-gray-200 text-lg font-medium 
+                           hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 {item}
               </Link>
