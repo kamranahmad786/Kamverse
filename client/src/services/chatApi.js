@@ -5,7 +5,7 @@ export default {
   // normalize the response to { reply: string } so callers can
   // consistently read `response.reply`.
   async ask(question) {
-    const res = await api.post('/chat/query', { question });
+    const res = await api.post('/api/chat/query', { question });
     const data = res.data ?? {};
     const reply = data.answer || data.reply || data;
     return { reply };
