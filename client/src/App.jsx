@@ -28,7 +28,8 @@ function AppContent() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-black to-gray-800">
+    <div className="w-full min-h-screen text-gray-900 bg-white dark:bg-gray-900 dark:text-gray-100">
+
       {loading && <Loader />}
 
       {/* Scroll progress bar */}

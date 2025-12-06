@@ -23,11 +23,12 @@ export function ThemeProvider({ children }) {
     console.log('Current theme:', theme);
     console.log('Current classList:', [...root.classList]);
     
-    // Remove existing theme classes
-    root.classList.remove("light", "dark");
-    
-    // Add new theme class
-    root.classList.add(theme);
+    root.classList.remove("dark");
+
+if (theme === "dark") {
+  root.classList.add("dark");
+}
+
     
     // Debug logging
     console.log('Updated classList:', [...root.classList]);
