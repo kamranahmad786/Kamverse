@@ -60,9 +60,9 @@ export default function Skills() {
   const defaultSkills = [
     // FRONTEND
     { name: "React", category: "Frontend" },
-    // { name: "Next.js", category: "Frontend" },
+    { name: "Next.js", category: "Frontend" },
     { name: "Redux Toolkit", category: "Frontend" },
-    // { name: "TypeScript", category: "Frontend" },
+    { name: "TypeScript", category: "Frontend" },
     { name: "JavaScript", category: "Frontend" },
     { name: "HTML5", category: "Frontend" },
     { name: "CSS3", category: "Frontend" },
@@ -75,7 +75,7 @@ export default function Skills() {
     { name: "SQL", category: "Backend" },
     { name: "REST APIs", category: "Backend" },
     { name: "JWT Auth", category: "Backend" },
-    // { name: "Docker", category: "Backend" },
+    { name: "Docker", category: "Backend" },
     { name: "Cloud", category: "Backend" },
 
     // OTHERS
@@ -83,7 +83,7 @@ export default function Skills() {
     { name: "C++", category: "Others" },
     { name: "Git", category: "Others" },
     { name: "DSA", category: "Others" },
-    // { name: "System Design", category: "Others" },
+    { name: "System Design", category: "Others" },
     { name: "UI/UX", category: "Others" },
   ];
 
@@ -110,18 +110,18 @@ export default function Skills() {
       id="skills"
       className="w-full min-h-screen px-6 py-20 bg-white dark:bg-gray-900"
     >
-      <h2 className="text-center text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-16">
+      <h2 className="mb-16 text-4xl font-bold text-center text-gray-900 md:text-5xl dark:text-white">
         Technical Skills
       </h2>
 
       <div className="max-w-6xl mx-auto space-y-16">
         {Object.entries(grouped).map(([category, list]) => (
           <div key={category}>
-            <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-8">
+            <h3 className="mb-8 text-2xl font-semibold text-gray-800 dark:text-gray-200">
               {category}
             </h3>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
               {list.map((skill, i) => (
                 <SkillCard
                   key={i}
@@ -141,9 +141,7 @@ function SkillCard({ name, icon }) {
   return (
     <motion.div
       whileHover={{ y: -4 }}
-      className="border border-gray-200 dark:border-gray-700 rounded-xl 
-                 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md
-                 transition-all duration-300 p-6 flex flex-col items-center justify-center gap-3"
+      className="flex flex-col items-center justify-center gap-3 p-6 transition-all duration-300 bg-white border border-gray-200 shadow-sm dark:border-gray-700 rounded-xl dark:bg-gray-800 hover:shadow-md"
     >
       <div className="text-5xl">{icon}</div>
       <p className="text-lg font-medium text-gray-900 dark:text-gray-200">
