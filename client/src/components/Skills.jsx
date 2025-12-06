@@ -60,9 +60,9 @@ export default function Skills() {
   const defaultSkills = [
     // FRONTEND
     { name: "React", category: "Frontend" },
-    { name: "Next.js", category: "Frontend" },
+    // { name: "Next.js", category: "Frontend" },
     { name: "Redux Toolkit", category: "Frontend" },
-    { name: "TypeScript", category: "Frontend" },
+    // { name: "TypeScript", category: "Frontend" },
     { name: "JavaScript", category: "Frontend" },
     { name: "HTML5", category: "Frontend" },
     { name: "CSS3", category: "Frontend" },
@@ -75,7 +75,7 @@ export default function Skills() {
     { name: "SQL", category: "Backend" },
     { name: "REST APIs", category: "Backend" },
     { name: "JWT Auth", category: "Backend" },
-    { name: "Docker", category: "Backend" },
+    // { name: "Docker", category: "Backend" },
     { name: "Cloud", category: "Backend" },
 
     // OTHERS
@@ -83,7 +83,7 @@ export default function Skills() {
     { name: "C++", category: "Others" },
     { name: "Git", category: "Others" },
     { name: "DSA", category: "Others" },
-    { name: "System Design", category: "Others" },
+    // { name: "System Design", category: "Others" },
     { name: "UI/UX", category: "Others" },
   ];
 
