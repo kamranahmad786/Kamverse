@@ -1,124 +1,107 @@
+
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "../hooks/useTheme";
 
 const MENU_ITEMS = [
-  "Home",
-  "Projects",
-  "Skills",
-  "Experience",
-  "Education",
-  "Certificates",
-  "Contact",
+  { label: "Home", path: "/" },
+  { label: "Projects", path: "/projects" },
+  { label: "Skills", path: "/skills" },
+  { label: "Experience", path: "/experience" },
+  { label: "Education", path: "/education" },
+  { label: "Certificates", path: "/certificates" },
+  { label: "Contact", path: "/contact" },
 ];
 
-export default function Navbar({ onMenuStateChange }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    onMenuStateChange?.(isOpen);
-  }, [isOpen, onMenuStateChange]);
-
   return (
-    <motion.nav
-      initial={{ y: -60 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 90 }}
-      className="fixed top-0 left-0 w-full z-50 border-b border-gray-300 dark:border-gray-700 
-                 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg"
-    >
-      <div className="container mx-auto flex justify-between items-center px-4 md:px-6 py-3">
-
-        {/* Brand */}
+    <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+      <div
+        className="w-full max-w-4xl flex items-center justify-between 
+                   bg-white dark:bg-gray-900 
+                   border border-gray-200 dark:border-gray-700
+                   rounded-full px-5 py-2 shadow-md backdrop-blur"
+      >
+        {/* ---------- LEFT : BRAND ---------- */}
         <Link to="/" className="flex items-center gap-3">
           <img
             src="/assets/profileImg.jpg"
             alt="Kamran Ahmad"
-            className="w-10 h-10 rounded-full object-cover border border-gray-300 dark:border-gray-700 shadow-sm"
+            className="w-9 h-9 rounded-full object-cover"
           />
-
-          <div className="flex flex-col leading-tight">
-            <span className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
+          <div className="hidden sm:flex flex-col leading-tight">
+            <span className="font-semibold text-gray-900 dark:text-white text-sm">
               Kamran Ahmad
             </span>
-            <span className="text-xs text-gray-600 dark:text-gray-400">
+            <span className="text-xs text-gray-500 dark:text-gray-400">
               Software Developer
             </span>
           </div>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          {MENU_ITEMS.map((item) => (
-            <Link
-              key={item}
-              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 
-                         font-medium transition-colors"
-            >
-              {item}
-            </Link>
-          ))}
-
-          {/* 🔆 / 🌑 Theme Toggle */}
-          <motion.button
+        {/* ---------- RIGHT : ACTIONS ---------- */}
+        <div className="flex items-center gap-3 relative">
+          {/* Theme Toggle (Mic replacement) */}
+          <button
             onClick={toggleTheme}
-            whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full border border-gray-300 dark:border-gray-600 
-                       hover:bg-gray-100 dark:hover:bg-gray-800 transition text-xl"
+            className="w-9 h-9 flex items-center justify-center rounded-full
+                       border border-gray-300 dark:border-gray-600
+                       hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            aria-label="Toggle theme"
           >
-            {theme === "dark" ? "🔆" : "🌑"}
-          </motion.button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-3">
-
-          {/* 🔆 / 🌑 Mobile Toggle */}
-          <motion.button
-            onClick={toggleTheme}
-            whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full border border-gray-300 dark:border-gray-600 
-                       hover:bg-gray-100 dark:hover:bg-gray-800 transition text-xl"
-          >
-            {theme === "dark" ? "🔆" : "🌑"}
-          </motion.button>
-
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? (
-              <X size={26} className="text-gray-900 dark:text-white" />
+            {theme === "dark" ? (
+              <Sun size={18} className="text-yellow-400" />
             ) : (
-              <Menu size={26} className="text-gray-900 dark:text-white" />
+              <Moon size={18} className="text-gray-700" />
             )}
           </button>
+
+          {/* Profile Avatar */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="w-9 h-9 rounded-full overflow-hidden border border-gray-300 dark:border-gray-600"
+          >
+            <img
+              src="/assets/profileImg.jpg"
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+          </button>
+
+          {/* ---------- DROPDOWN MENU ---------- */}
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="absolute right-0 top-12 w-48 
+                           bg-white dark:bg-gray-900 
+                           border border-gray-200 dark:border-gray-700
+                           rounded-xl shadow-lg overflow-hidden"
+              >
+                {MENU_ITEMS.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.path}
+                    onClick={() => setOpen(false)}
+                    className="block px-4 py-3 text-sm
+                               text-gray-800 dark:text-gray-200
+                               hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
-
-      {/* Mobile Dropdown */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"
-        >
-          <div className="flex flex-col px-6 py-4 gap-4">
-            {MENU_ITEMS.map((item) => (
-              <Link
-                key={item}
-                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                onClick={() => setIsOpen(false)}
-                className="text-gray-800 dark:text-gray-200 text-lg font-medium 
-                           hover:text-blue-600 dark:hover:text-blue-400 transition"
-              >
-                {item}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </motion.nav>
+    </div>
   );
 }
