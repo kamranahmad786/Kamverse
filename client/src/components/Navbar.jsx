@@ -1,121 +1,120 @@
-// src/components/Navbar.jsx
 import { Link } from "react-router-dom";
-import { Menu, Moon, Sun, X } from "lucide-react";
-import { useTheme } from "../hooks/useTheme";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "../hooks/useTheme";
 
 const MENU_ITEMS = [
-  { label: "Home", path: "/" },
-  { label: "Projects", path: "/projects" },
-  { label: "Skills", path: "/skills" },
-  { label: "Experience", path: "/experience" },
-  { label: "Education", path: "/education" },
-  { label: "Certificates", path: "/certificates" },
-  { label: "Contact", path: "/contact" },
+  "Home",
+  "Projects",
+  "Skills",
+  "Experience",
+  "Education",
+  "Certificates",
+  "Contact",
 ];
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-3 sm:px-6">
-      {/* Main Wrapper */}
-      <div
-        className="
-          mx-auto mt-3 max-w-7xl
-          flex items-center justify-between
-          rounded-2xl
-          bg-white dark:bg-gray-900
-          border border-gray-200 dark:border-gray-700
-          px-4 py-3
-          shadow-sm
-        "
-      >
-        {/* LEFT */}
+    <motion.nav
+      initial={{ y: -60 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 90 }}
+      className="fixed top-0 left-0 w-full z-50 
+                 bg-white/80 dark:bg-gray-900/80 
+                 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700"
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+
+        {/* ---------- BRAND ---------- */}
         <Link to="/" className="flex items-center gap-3">
           <img
             src="/assets/profileImg.jpg"
             alt="Kamran Ahmad"
-            className="w-9 h-9 rounded-full object-cover border border-gray-300 dark:border-gray-700"
+            className="w-10 h-10 rounded-full object-cover border border-gray-300 dark:border-gray-700"
           />
-          <div className="flex flex-col leading-tight">
-            <span className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white">
+          <div className="leading-tight">
+            <div className="text-lg font-semibold text-gray-900 dark:text-white">
               Kamran Ahmad
-            </span>
-            <span className="text-xs text-gray-500 dark:text-gray-400">
+            </div>
+            <div className="text-xs text-gray-600 dark:text-gray-400">
               Software Developer
-            </span>
+            </div>
           </div>
         </Link>
 
-        {/* RIGHT */}
-        <div className="flex items-center gap-3">
+        {/* ---------- DESKTOP MENU ---------- */}
+        <div className="hidden md:flex items-center gap-8">
+          {MENU_ITEMS.map((item) => (
+            <Link
+              key={item}
+              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              className="text-sm font-medium text-gray-700 dark:text-gray-200 
+                         hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >
+              {item}
+            </Link>
+          ))}
+
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="
-              w-9 h-9 flex items-center justify-center rounded-full
-              border border-gray-300 dark:border-gray-600
-              bg-gray-100 dark:bg-gray-800
-              text-gray-700 dark:text-gray-200
-              hover:bg-gray-200 dark:hover:bg-gray-700
-              transition
-            "
+            className="ml-4 p-2 rounded-full border border-gray-300 dark:border-gray-600
+                       hover:bg-gray-100 dark:hover:bg-gray-800 transition text-lg"
             aria-label="Toggle theme"
           >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
+        </div>
+
+        {/* ---------- MOBILE ACTIONS ---------- */}
+        <div className="md:hidden flex items-center gap-3">
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full border border-gray-300 dark:border-gray-600
+                       hover:bg-gray-100 dark:hover:bg-gray-800 transition text-lg"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
           </button>
 
           {/* Hamburger */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="
-              w-9 h-9 flex items-center justify-center rounded-full
-              border border-gray-300 dark:border-gray-600
-              bg-gray-100 dark:bg-gray-800
-              text-gray-700 dark:text-gray-200
-              hover:bg-gray-200 dark:hover:bg-gray-700
-              transition
-            "
-            aria-label="Menu"
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? (
+              <X size={26} className="text-gray-900 dark:text-white" />
+            ) : (
+              <Menu size={26} className="text-gray-900 dark:text-white" />
+            )}
           </button>
         </div>
       </div>
 
-      {/* MOBILE DROPDOWN */}
-      {open && (
-        <div
-          className="
-            mx-auto mt-2 max-w-7xl
-            rounded-2xl
-            bg-white dark:bg-gray-900
-            border border-gray-200 dark:border-gray-700
-            shadow-md
-            px-4 py-4
-            flex flex-col gap-3
-          "
+      {/* ---------- MOBILE DROPDOWN ---------- */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="md:hidden bg-white dark:bg-gray-900 
+                     border-t border-gray-200 dark:border-gray-700"
         >
-          {MENU_ITEMS.map((item) => (
-            <Link
-              key={item.label}
-              to={item.path}
-              onClick={() => setOpen(false)}
-              className="
-                text-gray-800 dark:text-gray-200
-                font-medium
-                px-2 py-2 rounded-lg
-                hover:bg-gray-100 dark:hover:bg-gray-800
-                transition
-              "
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
+          <div className="flex flex-col px-6 py-4 gap-4">
+            {MENU_ITEMS.map((item) => (
+              <Link
+                key={item}
+                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                onClick={() => setIsOpen(false)}
+                className="text-gray-800 dark:text-gray-200 text-base font-medium
+                           hover:text-blue-600 dark:hover:text-blue-400 transition"
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
+        </motion.div>
       )}
-    </nav>
+    </motion.nav>
   );
-        }
+}
