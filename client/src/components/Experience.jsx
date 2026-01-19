@@ -27,8 +27,8 @@ export default function Experience() {
 
     {
       company: "Google Developer Club, BBSR",
-      role: "Member",
-      duration: "2024 – Present",
+      role: "Tech Member",
+      duration: "2024 – 2025",
       description: [
         "Contributed to open-source community events.",
         "Mentored junior developers.",
