@@ -5,11 +5,15 @@ import { motion } from "framer-motion";
 export default function Experience() {
   const experiences = [
     {
-      company: "Google Gemini",
-      role: "Google Student Ambassador",
-      duration: "Sep 2025 – Present",
+      company: "Silan Software Pvt Ltd",
+      role: "Mern Stack Developer Intern",
+      duration: "Oct 2025 – Dec 2025",
       description:
-        "Supporting Google’s developer ecosystem, conducting workshops, and enabling students to adopt modern AI technologies.",
+        "Worked on a real-world FinTech payment solution product – SilanPay.",
+"Developed and optimized frontend components using React.js with responsive UI principles.",
+"Integrated backend services using Node.js and Express.js for payment and user workflows.",
+"Contributed to secure authentication, dashboard modules, and transaction-related features.",
+"Gained hands-on experience with production-grade MERN stack applications and FinTech systems.",
     },
     {
       company: "PrOrator",
